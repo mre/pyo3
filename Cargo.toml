@@ -4,10 +4,10 @@ version = "0.2.5"
 description = "Bindings to Python interpreter"
 authors = ["PyO3 Project and Contributors <https://github.com/PyO3>"]
 readme = "README.md"
-keywords = ["pyo3", "python", "cpython"]
+keywords = ["pyo3", "python", "cpython", "ffi"]
 homepage = "https://github.com/pyo3/pyo3"
 repository = "https://github.com/pyo3/pyo3.git"
-documentation = "https://pyo3.github.io/pyo3/pyo3/"
+documentation = "https://pyo3.github.io/pyo3/guide/"
 categories = ["api-bindings", "development-tools::ffi"]
 license = "Apache-2.0"
 exclude = [".gitignore", ".travis.yml", ".cargo/config", "appveyor.yml"]
@@ -29,7 +29,7 @@ pyo3cls = { path = "pyo3cls", version = "0.2.5" }
 docmatic = "^0.1.2"
 
 [build-dependencies]
-regex = "0.2"
+regex = "1.0"
 version_check = "0.1"
 
 [features]
