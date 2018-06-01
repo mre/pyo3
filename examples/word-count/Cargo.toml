@@ -7,7 +7,7 @@ version = "0.1.0"
 rayon = "0.8"
 
 [dependencies.pyo3]
-path = "../../"
+version = "0.2.7"
 
 [lib]
 name = "word_count"

@@ -1,6 +1,7 @@
 // Source adopted from
 // https://github.com/tildeio/helix-website/blob/master/crates/word_count/src/lib.rs
 #![feature(proc_macro, specialization)]
+#[macro_use]
 extern crate pyo3;
 extern crate rayon;
 
@@ -51,9 +52,11 @@ fn wc_parallel(lines: &str, search: &str) -> i32 {
 
 #[pymodinit(_word_count)]
 fn init_mod(py: Python, m: &PyModule) -> PyResult<()> {
+    py_exception!(_word_count, JSONDecodeError);
 
     #[pyfn(m, "search")]
     fn search(py: Python, path: String, search: String) -> PyResult<i32> {
+        return Err(JSONDecodeError::new(format!("ouch!")));
         let mut file = File::open(path)?;
         let mut contents = String::new();
         file.read_to_string(&mut contents)?;
@@ -64,10 +67,11 @@ fn init_mod(py: Python, m: &PyModule) -> PyResult<()> {
 
     #[pyfn(m, "search_sequential")]
     fn search_sequential(path: String, search: String) -> PyResult<i32> {
-        let mut file = File::open(path)?;
-        let mut contents = String::new();
-        file.read_to_string(&mut contents)?;
-        Ok(wc_sequential(&contents, &search))
+                Err(JSONDecodeError::new("ouch"))
+        // let mut file = File::open(path)?;
+        // let mut contents = String::new();
+        // file.read_to_string(&mut contents)?;
+        // Ok(wc_sequential(&contents, &search))
     }
 
     Ok(())
